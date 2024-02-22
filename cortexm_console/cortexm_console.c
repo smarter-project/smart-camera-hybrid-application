@@ -19,11 +19,14 @@ typedef struct {
   char data[RPMSG_DATA_SIZE];
 } msg_data_t;
 
-#define MSG             "Ok, Computer"
-#define DEFAULT_LOGFILE         "/tmp/m_console.log"
+#define USAGE "Usage: %s logfilename [-w]\n"
 
+#define MSG             "Ok, Computer"
+#define DEFAULT_LOGFILE "/tmp/m_console.log"
+#define DEFAULT_MODE    "a+"
 
 char *logfile;
+char *mode;
 
 msg_data_t data_buf;
 
@@ -76,14 +79,24 @@ int main(int argc, char *argv[]) {
   int err;
   if (argc == 1) {
     logfile = DEFAULT_LOGFILE;
+    mode = DEFAULT_MODE;
   } else if (argc == 2) {
     logfile = argv[1];
+    mode = DEFAULT_MODE;
+  } else if (argc == 3) {
+    logfile = argv[1];
+    if (strcmp(argv[2], "-w") == 0) {
+      mode = "w+";
+    } else {
+      printf(USAGE, argv[0]);
+      exit(-1);
+    }
   } else {
-    printf("Usage: %s logfilename\n", argv[0]);
+    printf(USAGE, argv[0]);    
     exit(-1);
   }
 
-  logfp = fopen(logfile,  "w+");
+  logfp = fopen(logfile,  mode);
   if (logfp < 0) {
     int err = errno;
     printf("Error opening logfile %s : %s \n", logfile, strerror(err));
