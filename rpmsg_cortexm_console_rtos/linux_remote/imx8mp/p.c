@@ -25,18 +25,7 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-#ifdef IMX8MM
 #define RPMSG_LITE_LINK_ID            (RL_PLATFORM_IMX8MM_M4_USER_LINK_ID)
-#endif
-
-#ifdef IMX8MP
-#define RPMSG_LITE_LINK_ID            (RL_PLATFORM_IMX8MP_M7_USER_LINK_ID)
-#endif
-
-#ifndef RPMSG_LITE_LINK_ID
-#error "SoC not specified"
-#endif
-
 #define RPMSG_LITE_SHMEM_BASE         (VDEV0_VRING_BASE)
 #define RPMSG_LITE_NS_ANNOUNCE_STRING "rpmsg-openamp-demo-channel"
 #define RPMSG_LITE_MASTER_IS_LINUX
@@ -131,7 +120,7 @@ static void app_task(void *param)
 
     volatile rpmsg_ns_handle ns_handle;
 
-    const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
+    const TickType_t xDelay = 1000; // portTICK_PERIOD_MS
     static int i = 0;
 
     /* Print the initial banner */

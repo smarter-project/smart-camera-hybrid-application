@@ -37,6 +37,9 @@
 #error "SoC not specified"
 #endif
 
+
+
+#define RPMSG_LITE_LINK_ID            (RL_PLATFORM_IMX8MM_M4_USER_LINK_ID)
 #define RPMSG_LITE_SHMEM_BASE         (VDEV0_VRING_BASE)
 #define RPMSG_LITE_NS_ANNOUNCE_STRING "rpmsg-openamp-demo-channel"
 #define RPMSG_LITE_MASTER_IS_LINUX
