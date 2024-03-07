@@ -18,24 +18,28 @@ Toolchain supported
 Building
 ========
 
-The directory should be put within the MCUXEpresso SDK example directory:
-  for example under .../sdk/boards/evkmimx8mm/multicore_examples
-
-The ARMGCC_DIR needs to be set to point to the tools:
+The ARMGCC_DIR environment variable needs to be set to point to the toolchain:
   for example:  ARMGCC_DIR=../arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi
 
-cd .../sdk/boards/evkmimx8mm/multicore_examples/rpmsg_cortexm_console_rtos/linux_remote/armgcc
+The build_release.sh script should be edited so that The MCUXDIR variable is set
+to point to the NXP MCUXpresso directory:
 
-./build_release.sh
+   MCUXDIR=/data/cadeniyi/SDK_2_15_000_EVK-MIMX8MP
 
 
-The final firmware file should be created in: release/rpmsg_cortexm_console_rtos_linux_remote.elf
+The example can be built for the imx8Mmini-EVK or the imx8Mplus-evk board:
+
+cd armgcc_imx8mm; ./clean.sh; ./build_release.sh
+The final firmware file should be created in armgcc_imx8mm/release/rpmsg_cortexm_console_rtos_linux_remote.elf
+
+cd armgcc_imx8mp; ./clean.sh; ./build_release.sh
+The final firmware file should be created in armgcc_imx8mp/release/rpmsg_cortexm_console_rtos_linux_remote.elf
 
 
 Execution
 =========
 
-This file can be copied into the rootfilsystem for the imx8m-mini-evk under /lib/firmware
+This file can be copied into the rootfilesystem for the imx8m-mini-evk under /lib/firmware
 
 Remoteproc can be used to load and start the firmware
 
