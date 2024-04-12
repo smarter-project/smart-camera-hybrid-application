@@ -114,6 +114,9 @@ int A53_asleep() {
   return  (MU_GetOtherCorePowerMode(MUB)==3);
 }
 
+int A53_awake() {
+  return  (MU_GetOtherCorePowerMode(MUB)==0);
+}
 
 void rpmsg_printf(char *msg) {
   uint32_t len;
@@ -122,6 +125,7 @@ void rpmsg_printf(char *msg) {
     len = strlen(msg);
     (void)rpmsg_lite_send(my_rpmsg, my_ept, remote_addr, msg, len, RL_BLOCK);
   }
+  //PRINTF("MUB: %d\r\n", MU_GetOtherCorePowerMode(MUB));
   PRINTF(msg);
 }
 
@@ -132,6 +136,7 @@ static void app_task(void *param)
     volatile rpmsg_ns_handle ns_handle;
 
     const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
+    const TickType_t yDelay = 100 / portTICK_PERIOD_MS;    
     static int i = 0;
 
     /* Print the initial banner */
@@ -183,9 +188,13 @@ static void app_task(void *param)
       }
       if ((i % 30) == 0) {
         if (A53_asleep()) { // Cortex A is sleeping
-          PRINTF("A53 is asleep! "); 
+          PRINTF("A53 is asleep! ");
+          PRINTF("Let's wake them up\r\n");          
           MU_SendMsg(MUB, 1, 2); //wake up Cortex A
-          PRINTF("Waking up\r\n");
+          while (A53_asleep()) {
+            PRINTF("Waking up\r\n");
+            vTaskDelay( yDelay );
+          }
         }
       }
       i++;

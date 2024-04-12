@@ -64,14 +64,36 @@ void sig_handler(int signo)
 }
 
 void check() {
-  if (open("/dev/rpmsg_ctrl0", O_RDWR) < 0) {
+  int fd =   open("/dev/rpmsg_ctrl0", O_RDWR);
+  if (fd < 0) {
     printf("Could not open rpmsg_ctrl0\n");
+    printf ("Error no is : %d\n", errno);
+    printf("Error description is : %s\n",strerror(errno));
     if (logfp) {
       printf("Closing logfile\n");
       fclose(logfp);
     }
     exit(0);
   }
+  close(fd);  
+}
+
+
+/* Wait for up to 5 seconds for the rpmsg_ctrl file to exist */
+int find_rpmsg(int wait_time) {
+  int fd;
+  
+  while (wait_time) {
+    fd =   open("/dev/rpmsg_ctrl0", O_RDWR);
+    if (fd >= 0) {
+      close(fd);
+      return 1; /* ok */
+    }
+    wait_time--;
+    sleep(1);
+  }
+  /* if we reach here then the rpmsg_ctrl file has not appeared */
+  return 0;
 }
 
 
@@ -107,13 +129,16 @@ int main(int argc, char *argv[]) {
      printf("\ncan't catch SIGINT\n");
   }
 
+  if (!find_rpmsg(5)) {
+    printf("Waited but Could not open rpmsg_ctrl0\nMaybe the firmware is not running yet?\n");
+    exit(-1);
+  }
+  
   fd = open("/dev/rpmsg_ctrl0", O_RDWR);
   if (fd < 0) {
     printf("Could not open rpmsg_ctrl0\nMaybe the firmware is not running yet?\n");
     exit(-1);
   }
-
-  /* printf("/dev/rpmsg_ctrl0 opened: %d\n", fd); */
 
   /* create endpoint interface */
   if (ioctl(fd, RPMSG_CREATE_EPT_IOCTL, &ept_info) < 0) {
@@ -140,7 +165,7 @@ int main(int argc, char *argv[]) {
   /* receive data from remote device */
   printf("Writing Cortex-M console info to %s\n", logfile);
   while(1) {
-    check();
+    //   check();
     if (read(fd_ept, &data_buf, sizeof(data_buf)) > 0) {
       fprintf(logfp, "%s", data_buf);
       fflush(logfp);
