@@ -136,7 +136,6 @@ static void app_task(void *param)
     volatile rpmsg_ns_handle ns_handle;
 
     const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
-    const TickType_t yDelay = 100 / portTICK_PERIOD_MS;    
     static int i = 0;
 
     /* Print the initial banner */
@@ -184,17 +183,18 @@ static void app_task(void *param)
 
     for (;;) {
       if ((i % 4) == 0) {
-        rprintf("%d\r\n", i);
+        rprintf("%d %d\r\n", i, MU_GetOtherCorePowerMode(MUB));
       }
-      if ((i % 30) == 0) {
+
+      if ((i % 4) == 0) {
         if (A53_asleep()) { // Cortex A is sleeping
-          PRINTF("A53 is asleep! ");
-          PRINTF("Let's wake them up\r\n");          
-          MU_SendMsg(MUB, 1, 2); //wake up Cortex A
+          PRINTF("A53s are asleep\r\n");
+          PRINTF("Let's wake them up!\r\n");          
           while (A53_asleep()) {
             PRINTF("Waking up\r\n");
-            vTaskDelay( yDelay );
+            MU_SendMsg(MUB, 1, 2); //wake up Cortex A                        
           }
+          PRINTF("A53s are now awake ");          
         }
       }
       i++;
