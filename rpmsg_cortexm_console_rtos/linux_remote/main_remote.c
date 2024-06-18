@@ -135,12 +135,15 @@ static void app_task(void *param)
 
     volatile rpmsg_ns_handle ns_handle;
 
-    const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
+    //    const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
+    const TickType_t xDelay = 33;
     static int i = 0;
-
+    static int countdown = 0;
+    static bool wakeup = false;
+    
     /* Print the initial banner */
     (void)PRINTF("\r\nRPMSG Console logger\r\n");
-
+    
 #ifdef MCMGR_USED
     uint32_t startupData;
     mcmgr_status_t status;
@@ -182,19 +185,24 @@ static void app_task(void *param)
 #endif /* RPMSG_LITE_MASTER_IS_LINUX */
 
     for (;;) {
-      if ((i % 4) == 0) {
-        rprintf("%d %d\r\n", i, MU_GetOtherCorePowerMode(MUB));
-      }
 
-      if ((i % 4) == 0) {
+      rprintf("Timestamp: %d\r\n", i);
+      PRINTF("MUB: %d\r\n", MU_GetOtherCorePowerMode(MUB));      
+
+      if ( (i % 15 == 0) && (countdown == 0)) {
         if (A53_asleep()) { // Cortex A is sleeping
           PRINTF("A53s are asleep\r\n");
-          PRINTF("Let's wake them up!\r\n");          
-          while (A53_asleep()) {
-            PRINTF("Waking up\r\n");
-            MU_SendMsg(MUB, 1, 2); //wake up Cortex A                        
-          }
-          PRINTF("A53s are now awake ");          
+          PRINTF("Let's wake them up in 10 seconds!\r\n");
+          wakeup = true;
+          countdown=10;
+        }
+      }
+      if ((wakeup==true) && (countdown > 0)) {
+        countdown--;
+        if (countdown == 0) {
+          PRINTF("Waking up\r\n");
+          MU_SendMsg(MUB, 1, 2); //wake up Cortex A
+          wakeup = false;
         }
       }
       i++;
