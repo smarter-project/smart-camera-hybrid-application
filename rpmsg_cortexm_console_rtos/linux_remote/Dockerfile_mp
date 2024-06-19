@@ -33,4 +33,4 @@ RUN export ARMGCC_DIR=/usr/ && ./build_release.sh
 FROM scratch as firmware
 COPY --from=buildenv /app/armgcc_imx8mp/release/rpmsg_cortexm_console_rtos_linux_remote.elf  /rpmsg_cortexm_console_rtos_linux_remote.elf
 ENTRYPOINT [ "/rpmsg_cortexm_console_rtos_linux_remote.elf" ]
-LABEL board="FSL i.MX8MPlus EVK board" mcu="imx-rproc"
+LABEL board="NXP i.MX8MPlus EVK board" mcu="imx-rproc"
