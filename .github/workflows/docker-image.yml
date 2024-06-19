@@ -1,75 +1,28 @@
-name: Docker Image CI
+name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      -
-        name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-      -
-        name: Set up Docker Buildx
+
+      - name: Set up Docker
         uses: docker/setup-buildx-action@v3
-
-      -
-        name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: rpmsg_cortexm_console_rtos/linux_remote/Dockerfile_mp
 
-      -
-        name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          context: "{{defaultContext}}:rpmsg_cortexm_console_rtos/linux_remote"                    
-          file: Dockerfile_mp
-          cache-from: type=registry,ref=user/app:latest
-          cache-to: type=registry,ref=user/app:latest
-          tags: ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp:latest
+      - name: Build Docker image
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/rpmsg_cortexm_console_rtos_mp:latest rpmsg_cortexm_console_rtos/linux_remote
 
-#
-#  build:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Set up Docker Buildx
-#        uses: docker/setup-buildx-action@v3
-#
-#      - uses: actions/checkout@v3
-#        name: Check out code
-#
-#      - uses: mr-smithers-excellent/docker-build-push@v6
-#        name: Build & push Docker image
-#        with:
-#          image: smarter-project/rpmsg_cortexm_console_rtos_mp
-#          directory: rpmsg_cortexm_console_rtos/linux_remote      
-#          registry: ghcr.io
-#          username: ${{ github.actor }}
-#          password: ${{ secrets.GITHUB_TOKEN }}
-#          dockerfile: rpmsg_cortexm_console_rtos/linux_remote/Dockerfile_mp
-#          addLatest: true
-#          cache-from: type=registry,ref=user/app:latest
-#          cache-to: type=inline
-#
-#      - uses: mr-smithers-excellent/docker-build-push@v6
-#        name: Build & push Docker image
-#        with:
-#          image: smarter-project/rpmsg_cortexm_console_rtos_mm
-#          directory: rpmsg_cortexm_console_rtos/linux_remote      
-#          registry: ghcr.io
-#          username: ${{ github.actor }}
-#          password: ${{ secrets.GITHUB_TOKEN }}
-#          dockerfile: rpmsg_cortexm_console_rtos/linux_remote/Dockerfile_mm
-#          addLatest: true
-#          cache-from: type=gha
-#          cache-to: type=gha,mode=max
-#
-#
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push Docker image to GitHub Container Registry
+        run: docker push ghcr.io/${{ github.repository_owner }}/rpmsg_cortexm_console_rtos_mp:latest
