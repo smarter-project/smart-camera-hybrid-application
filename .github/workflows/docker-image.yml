@@ -34,10 +34,7 @@ jobs:
           file: Dockerfile_mp
           cache-from: type=gha
           cache-to: type=gha 
-          tags: |
-            ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp:latest
-            ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp:1.0.0            
-        
+          tags: ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp
 
 #
 #  build:
