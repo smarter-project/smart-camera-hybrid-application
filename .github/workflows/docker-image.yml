@@ -34,7 +34,7 @@ jobs:
           file: Dockerfile_mp
           cache-from: type=registry,ref=user/app:latest
           cache-to: type=registry,ref=user/app:latest
-          tags: ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp
+          tags: ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp:latest
 
 #
 #  build:
