@@ -30,11 +30,13 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp:latest
           context: "{{defaultContext}}:rpmsg_cortexm_console_rtos/linux_remote"                    
           file: Dockerfile_mp
           cache-from: type=gha
-          cache-to: type=gha
+          cache-to: type=gha 
+          tags: |
+            ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp:latest
+            ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp:1.0.0            
         
 
 #
