@@ -22,6 +22,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: rpmsg_cortexm_console_rtos/linux_remote/Dockerfile_mp
+          addLatest: true
 
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image
@@ -32,4 +33,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: rpmsg_cortexm_console_rtos/linux_remote/Dockerfile_mm
-
+          addLatest: true
