@@ -10,13 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - uses: actions/checkout@v3
         name: Check out code
 
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image
         with:
-          context: .
           image: smarter-project/rpmsg_cortexm_console_rtos_mp
           directory: rpmsg_cortexm_console_rtos/linux_remote      
           registry: ghcr.io
@@ -24,13 +26,12 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: rpmsg_cortexm_console_rtos/linux_remote/Dockerfile_mp
           addLatest: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=registry,ref=user/app:latest
+          cache-to: type=inline
 
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image
         with:
-          context: .        
           image: smarter-project/rpmsg_cortexm_console_rtos_mm
           directory: rpmsg_cortexm_console_rtos/linux_remote      
           registry: ghcr.io
