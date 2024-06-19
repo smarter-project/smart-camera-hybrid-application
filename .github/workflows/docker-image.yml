@@ -32,9 +32,8 @@ jobs:
           push: true
           context: "{{defaultContext}}:rpmsg_cortexm_console_rtos/linux_remote"                    
           file: Dockerfile_mp
-          cache-from: type=gha
-          cache-to: type=gha
-#          tags: ghcr.io/${{ github.repository }}:${{ github.sha }}          
+          cache-from: type=registry,ref=user/app:latest
+          cache-to: type=registry,ref=user/app:latest
           tags: ghcr.io/smarter-project/rpmsg_cortexm_console_rtos_mp
 
 #
