@@ -135,14 +135,18 @@ static void app_task(void *param)
 
     volatile rpmsg_ns_handle ns_handle;
 
-    //    const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
+#ifdef IMX8MM    
+    const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
+#else    
     const TickType_t xDelay = 33;
+#endif
+    
     static int i = 0;
     static int countdown = 0;
     static bool wakeup = false;
     
     /* Print the initial banner */
-    (void)PRINTF("\r\nRPMSG Console logger\r\n");
+    (void)PRINTF("\r\nSMARTER Hybrid application\r\n");
     
 #ifdef MCMGR_USED
     uint32_t startupData;
