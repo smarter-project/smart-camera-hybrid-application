@@ -125,7 +125,6 @@ void rpmsg_printf(char *msg) {
     len = strlen(msg);
     (void)rpmsg_lite_send(my_rpmsg, my_ept, remote_addr, msg, len, RL_BLOCK);
   }
-  //PRINTF("MUB: %d\r\n", MU_GetOtherCorePowerMode(MUB));
   PRINTF(msg);
 }
 
@@ -191,7 +190,7 @@ static void app_task(void *param)
     for (;;) {
 
       rprintf("Timestamp: %d\r\n", i);
-      PRINTF("MUB: %d\r\n", MU_GetOtherCorePowerMode(MUB));      
+      //      PRINTF("MUB: %d\r\n", MU_GetOtherCorePowerMode(MUB));      
 
       if ( (i % 15 == 0) && (countdown == 0)) {
         if (A53_asleep()) { // Cortex A is sleeping
