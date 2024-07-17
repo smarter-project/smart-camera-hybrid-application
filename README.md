@@ -34,18 +34,14 @@ We have added a new part of the application which runs on the Cortex-M4 and depl
 
 *SMARTER Demo Application with a hybrid component*
 
+
 ## Video Demonstration 
 
 The accompanying video: [link] shows how we can deploy the SMARTER application
 to the iMX8M-Mini-EVK. We follow the instructions given in the SMARTER Project
 repo [DOCS] and then deploy an extra component that runs on the Cortex-M4.
 
-
-## Summary
-
-We have shown how the proof of concept hybrid container runtime described in the "Cloud-Native Deployment on Hybrid Edge Systems" blog can be used to deploy software onto an embedded processor within a System-on-Chip running Linux. The ability to deploy the multiple parts of an application using a single deployment mechanism (in this case the k3s container orchestrator) provides significant benefits for developers.
-
-
+The scripts and files used in the video demonstration are included in this repo
 
 
 ## References
