@@ -64,3 +64,14 @@ We have shown how the proof of concept hybrid container runtime described in the
 [hybriddemoapp]: images/hybrid_smarter.drawio.png "Hybrid SMARTER Demo Application"
 
 
+[HotEdge]
+
+[IMX8MMEVK]
+
+[SoC]
+
+[DOCS]
+
+
+
+
