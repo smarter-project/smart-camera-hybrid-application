@@ -18,7 +18,7 @@ The SMARTER Demo application consists of a number of containerized services that
 
 ## Hardware platform
 
-For this demo we are using the iMX8M-Mini-EVK [^2] from NXP. The i.MX8M MINI LPDDR4 EVK board is a platform designed to show the most commonly used features of the i.MX 8M Mini Applications Processor in a small and low-cost package. The i.MX 8M Mini Quad applications processor [^3] contains 4x Cortex-A53 @ 1.8 GHz and 1x Cortex-M4 @ 400 MHz.  The EVK board has 2GB LPDDR4, 16GB eMMC and 32GB QSPI NOR. 
+For this demo we are using the iMX8M-Mini-EVK [IMX8MMEVK] from NXP. The i.MX8M MINI LPDDR4 EVK board is a platform designed to show the most commonly used features of the i.MX 8M Mini Applications Processor in a small and low-cost package. The i.MX 8M Mini Quad applications processor [SoC] contains 4x Cortex-A53 @ 1.8 GHz and 1x Cortex-M4 @ 400 MHz.  The EVK board has 2GB LPDDR4, 16GB eMMC and 32GB QSPI NOR. 
 
 ## Software
 
@@ -36,7 +36,9 @@ We have added a new part of the application which runs on the Cortex-M4 and depl
 
 ## Video Demonstration 
 
-The accompanying video: [link] shows how we can deploy the SMARTER application to the iMX8M-Mini-EVK. We follow the instructions given in the SMARTER Project repo[^4] and then deploy an extra component that runs on the Cortex-M4.
+The accompanying video: [link] shows how we can deploy the SMARTER application
+to the iMX8M-Mini-EVK. We follow the instructions given in the SMARTER Project
+repo [DOCS] and then deploy an extra component that runs on the Cortex-M4.
 
 
 ## Summary
@@ -51,11 +53,11 @@ We have shown how the proof of concept hybrid container runtime described in the
 
 [HotEdge]:  https://www.usenix.org/system/files/hotedge20_paper_ferreira_0.pdf "HotEdge '20 paper"
 
-[EVK]: IMX8M-MINI-EVK https://www.nxp.com/design/design-center/development-boards-and-designs/i-mx-evaluation-and-development-boards/evaluation-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK
+[IMX8MMEVK]: https://www.nxp.com/design/design-center/development-boards-and-designs/i-mx-evaluation-and-development-boards/evaluation-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK "IMX8M-MINI-EVK"
 
-SoC]: IMX8M-MINI SoC https://www.nxp.com/assets/block-diagram/en/i.MX8MMINI.pdf
+[SoC]: https://www.nxp.com/assets/block-diagram/en/i.MX8MMINI.pdf " IMX8M-MINI SoC"
 
-[DOCS]: SMARTER https://github.com/smarter-project/documentation
+[DOCS]: https://github.com/smarter-project/documentation "SMARTER"
 
 [demoapp]: images/smarter.drawio.png "SMARTER Demo Application"
 
