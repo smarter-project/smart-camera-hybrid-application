@@ -1,4 +1,4 @@
-#Running the SMARTER Demo on a Heterogeneous platform
+# Running the SMARTER Demo on a Heterogeneous platform
 
 
 The Evolving Edge whitepaper, https://armkeil.blob.core.windows.net/developer/Files/pdf/white-paper/arm-evolving-edge-computing-white-paper.pdf, highlights heterogeneity as an essential ingredient of Evolving Edge Computing. We call systems that contain more than one different type of processor a "hybrid system". The "Cloud-Native Deployment on Hybrid Systems" blog describes the implementation of a container runtime that enables the deployment of applications onto additional processors within a system.  For example, this can be used to deploy applications onto a microcontroller embedded alongside application-profile cores in an SoC.
@@ -7,7 +7,7 @@ In this project we show how this new container runtime can be used to extend an 
 
 ## SMARTER Project
 
-As part of the SMARTER (Secure Municipal, Agricultural, Rural, and Telco Edge Research) project, Arm has been exploring the use of cloud-native technology and methodologies in edge environments to evaluate their effectiveness at addressing the challenges of developing, debugging, depolying and securing software for edge devices. The paper "SMARTER: Experiences with Cloud Native on the Edge" [1] presented at the HotEdge'20 workshop on Hot Topics in Edge Computing describes in more detail how we address the challenges, especially at scale and the code is available via the project website https://getsmarter.io.https. 
+As part of the SMARTER (Secure Municipal, Agricultural, Rural, and Telco Edge Research) project, Arm has been exploring the use of cloud-native technology and methodologies in edge environments to evaluate their effectiveness at addressing the challenges of developing, debugging, depolying and securing software for edge devices. The paper "SMARTER: Experiences with Cloud Native on the Edge" [^1] presented at the HotEdge'20 workshop on Hot Topics in Edge Computing describes in more detail how we address the challenges, especially at scale and the code is available via the project website https://getsmarter.io.https. 
 
 
 The SMARTER Demo application consists of a number of containerized services that are deployed onto an edge system using a container orchestrator (k3s) that has been configured to cater for the differences between deploying to the edge and deploying to the cloud. Once deployed the demo application uses a machine learning model to perform object detection on a video stream. Detection data is sent to the cloud where it can be visualized via a grafana dashabord. 
@@ -18,7 +18,7 @@ The SMARTER Demo application consists of a number of containerized services that
 
 ## Hardware platform
 
-For this demo we are using the iMX8M-Mini-EVK [2] from NXP. The i.MX8M MINI LPDDR4 EVK board is a platform designed to show the most commonly used features of the i.MX 8M Mini Applications Processor in a small and low-cost package. The i.MX 8M Mini Quad applications processor [3] contains 4x Cortex-A53 @ 1.8 GHz and 1x Cortex-M4 @ 400 MHz.  The EVK board has 2GB LPDDR4, 16GB eMMC and 32GB QSPI NOR. 
+For this demo we are using the iMX8M-Mini-EVK [^2] from NXP. The i.MX8M MINI LPDDR4 EVK board is a platform designed to show the most commonly used features of the i.MX 8M Mini Applications Processor in a small and low-cost package. The i.MX 8M Mini Quad applications processor [^3] contains 4x Cortex-A53 @ 1.8 GHz and 1x Cortex-M4 @ 400 MHz.  The EVK board has 2GB LPDDR4, 16GB eMMC and 32GB QSPI NOR. 
 
 ## Software
 
@@ -36,7 +36,7 @@ We have added a new part of the application which runs on the Cortex-M4 and depl
 
 ## Video Demonstration 
 
-The accompanying video: [link] shows how we can deploy the SMARTER application to the iMX8M-Mini-EVK. We follow the instructions given in the SMARTER Project repo[4] and then deploy an extra component that runs on the Cortex-M4.
+The accompanying video: [link] shows how we can deploy the SMARTER application to the iMX8M-Mini-EVK. We follow the instructions given in the SMARTER Project repo[^4] and then deploy an extra component that runs on the Cortex-M4.
 
 
 ## Summary
@@ -49,13 +49,13 @@ We have shown how the proof of concept hybrid container runtime described in the
 ## References
 
 
-[1] HotEdge '20 paper: https://www.usenix.org/system/files/hotedge20_paper_ferreira_0.pdf
+[^1] HotEdge '20 paper: https://www.usenix.org/system/files/hotedge20_paper_ferreira_0.pdf
 
-[2] IMX8M-MINI-EVK https://www.nxp.com/design/design-center/development-boards-and-designs/i-mx-evaluation-and-development-boards/evaluation-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK
+[^2] IMX8M-MINI-EVK https://www.nxp.com/design/design-center/development-boards-and-designs/i-mx-evaluation-and-development-boards/evaluation-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK
 
-[3] IMX8M-MINI SoC https://www.nxp.com/assets/block-diagram/en/i.MX8MMINI.pdf
+[^3] IMX8M-MINI SoC https://www.nxp.com/assets/block-diagram/en/i.MX8MMINI.pdf
 
-[4] https://github.com/smarter-project/documentation
+[^4] https://github.com/smarter-project/documentation
 
 [demoapp]: images/smarter.drawio.png "SMARTER Demo Application"
 
