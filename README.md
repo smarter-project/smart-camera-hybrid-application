@@ -49,7 +49,7 @@ We have shown how the proof of concept hybrid container runtime described in the
 ## References
 
 
-[HotEdge]: HotEdge '20 paper: https://www.usenix.org/system/files/hotedge20_paper_ferreira_0.pdf
+[HotEdge]:  https://www.usenix.org/system/files/hotedge20_paper_ferreira_0.pdf "HotEdge '20 paper"
 
 [EVK]: IMX8M-MINI-EVK https://www.nxp.com/design/design-center/development-boards-and-designs/i-mx-evaluation-and-development-boards/evaluation-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK
 
