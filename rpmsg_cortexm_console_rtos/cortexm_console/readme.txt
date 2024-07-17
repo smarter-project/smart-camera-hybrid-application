@@ -1,7 +1,7 @@
 Overview
 ========
 This example Linux application uses RPMSG (via shared memory) to provide a way to create a console log file of the output from code running on the Cortex-M4. The code connects to the code 
-running on the Cortex-M4 via a named channel and address that needs to match that specified in the Cortex-M4 firmware (see https://git.research.arm.com/attk/hybrid/smart-camera-hybrid-application/-/tree/main/rpmsg_cortexm_console_rtos) 
+running on the Cortex-M4 via a named channel and address that needs to match that specified in the Cortex-M4 firmware (see https://github.com/smarter-project/smart-camera-hybrid-application/tree/main/rpmsg_cortexm_console_rtos/linux_remote) 
 
 
 Building
