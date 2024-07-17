@@ -7,7 +7,7 @@ In this project we show how this new container runtime can be used to extend an 
 
 ## SMARTER Project
 
-As part of the SMARTER (Secure Municipal, Agricultural, Rural, and Telco Edge Research) project, Arm has been exploring the use of cloud-native technology and methodologies in edge environments to evaluate their effectiveness at addressing the challenges of developing, debugging, depolying and securing software for edge devices. The paper "SMARTER: Experiences with Cloud Native on the Edge" [1]: presented at the HotEdge'20 workshop on Hot Topics in Edge Computing describes in more detail how we address the challenges, especially at scale and the code is available via the project website https://getsmarter.io.https. 
+As part of the SMARTER (Secure Municipal, Agricultural, Rural, and Telco Edge Research) project, Arm has been exploring the use of cloud-native technology and methodologies in edge environments to evaluate their effectiveness at addressing the challenges of developing, debugging, depolying and securing software for edge devices. The paper "SMARTER: Experiences with Cloud Native on the Edge" [HotEdge] presented at the HotEdge'20 workshop on Hot Topics in Edge Computing describes in more detail how we address the challenges, especially at scale and the code is available via the project website https://getsmarter.io.https. 
 
 
 The SMARTER Demo application consists of a number of containerized services that are deployed onto an edge system using a container orchestrator (k3s) that has been configured to cater for the differences between deploying to the edge and deploying to the cloud. Once deployed the demo application uses a machine learning model to perform object detection on a video stream. Detection data is sent to the cloud where it can be visualized via a grafana dashabord. 
@@ -49,13 +49,13 @@ We have shown how the proof of concept hybrid container runtime described in the
 ## References
 
 
-[1]: HotEdge '20 paper: https://www.usenix.org/system/files/hotedge20_paper_ferreira_0.pdf
+[HotEdge]: HotEdge '20 paper: https://www.usenix.org/system/files/hotedge20_paper_ferreira_0.pdf
 
-[2]: IMX8M-MINI-EVK https://www.nxp.com/design/design-center/development-boards-and-designs/i-mx-evaluation-and-development-boards/evaluation-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK
+[EVK]: IMX8M-MINI-EVK https://www.nxp.com/design/design-center/development-boards-and-designs/i-mx-evaluation-and-development-boards/evaluation-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK
 
-[3]: IMX8M-MINI SoC https://www.nxp.com/assets/block-diagram/en/i.MX8MMINI.pdf
+SoC]: IMX8M-MINI SoC https://www.nxp.com/assets/block-diagram/en/i.MX8MMINI.pdf
 
-[4]: https://github.com/smarter-project/documentation
+[DOCS]: SMARTER https://github.com/smarter-project/documentation
 
 [demoapp]: images/smarter.drawio.png "SMARTER Demo Application"
 
